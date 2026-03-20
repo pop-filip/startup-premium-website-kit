@@ -228,4 +228,151 @@ npm install -D axe-core @axe-core/playwright
 
 ---
 
+---
+
+## 🔍 SEO — Kako funkcionišu Keywords
+
+**`<meta name="keywords">`** — Google ga ignoriše od 2009. Bing ga djelimično koristi.
+
+**Što Google stvarno gleda (po važnosti):**
+
+| Signal | Važnost | Napomena |
+|---|---|---|
+| **Title tag** | ⭐⭐⭐⭐⭐ | Max 60 znakova, primarna ključna riječ na početku |
+| **Meta description** | ⭐⭐⭐⭐ | Utječe na CTR, max 160 znakova, action-oriented |
+| **H1/H2 naslovi** | ⭐⭐⭐⭐ | Ključne riječi prirodno u naslovima sekcija |
+| **Tekst na stranici** | ⭐⭐⭐⭐ | Prirodno korištenje, ne keyword stuffing |
+| **Schema.org markup** | ⭐⭐⭐⭐ | Rich results, LocalBusiness, FAQ, Breadcrumbs |
+| **Core Web Vitals** | ⭐⭐⭐⭐ | LCP < 2.5s, CLS < 0.1, FID < 100ms |
+| **Backlinks** | ⭐⭐⭐⭐⭐ | Vanjski sajtovi koji linkuju na tebe |
+| **meta keywords** | ❌ | Google ignoriše |
+
+### Title tag formula
+```
+Primarna KR — Sekundarna KR | Brend
+npr: "Videograf Österreich — Hochzeitsfilm & Imagefilm | matografie.at"
+```
+
+### Meta description formula
+```
+[Šta radiš] + [Gdje/Za koga] + [Benefit] + [CTA]
+npr: "Professioneller Videograf in Österreich. Hochzeitsfilme & Imagefilme. Wien · Linz · Salzburg. Jetzt anfragen."
+```
+
+---
+
+## 🗺️ Schema.org — Preporučena Struktura
+
+```
+@graph
+├── Person / Organization          ← Ko si / što je firma
+├── LocalBusiness (ako imaš lokaciju)  ← Google Maps, priceRange
+│   └── hasOfferCatalog
+│       └── Service[] (sa cijenama)   ← Rich results za usluge
+├── WebSite (sa SearchAction)          ← Site-wide search
+└── WebPage + BreadcrumbList           ← Per-page navigacija
+```
+
+### Dostupni schema generatori u `seo-metadata.tsx`
+
+| Funkcija | Schema tip | Kada koristiti |
+|---|---|---|
+| `organizationSchema()` | Organization | Svaka stranica (u layout) |
+| `websiteSchema()` | WebSite | Svaka stranica (u layout) |
+| `localBusinessSchema()` | LocalBusiness | Lokalni biznis sa adresom |
+| `articleSchema()` | Article | Blog postovi |
+| `productSchema()` | Product | E-commerce proizvodi |
+| `breadcrumbSchema()` | BreadcrumbList | Sve stranice osim home |
+| `faqSchema()` | FAQPage | Stranice sa FAQ sekcijom |
+
+### LocalBusiness primjer (za freelancere/agencije)
+```tsx
+<JsonLd data={localBusinessSchema({
+  name: 'Tvoje Ime / Firma',
+  url: 'https://yourdomain.com',
+  phone: '+43XXXXXXXXX',
+  address: { street: '', city: 'Linz', postalCode: '4020', country: 'AT' },
+  geo: { lat: 48.3069, lng: 14.2858 },
+  priceRange: '€€',
+  image: 'https://yourdomain.com/og-image.jpg',
+})} />
+```
+
+---
+
+## 🔒 Security Headers — Nginx Config
+
+Za produkcijski Nginx server, dodaj u server blok:
+
+```nginx
+# Clickjacking zaštita
+add_header X-Frame-Options "DENY";
+
+# MIME sniffing zaštita
+add_header X-Content-Type-Options "nosniff";
+
+# Referrer privacy
+add_header Referrer-Policy "strict-origin-when-cross-origin";
+
+# Disable browser features
+add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()";
+
+# Force HTTPS (samo nakon SSL setup-a)
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+
+# Content Security Policy (prilagodi domenama koje koristiš)
+add_header Content-Security-Policy "
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src https://fonts.gstatic.com;
+  img-src 'self' data: https:;
+  connect-src 'self' https://api.web3forms.com https://www.google-analytics.com;
+";
+```
+
+### Next.js — Security Headers (već u `next.config.js`)
+Starter kit `next.config.js` već uključuje sve security headere automatski za Next.js deployment.
+
+---
+
+## 🤖 robots.txt — Preporučena Konfiguracija
+
+```txt
+User-agent: *
+Allow: /
+
+# Blokirati admin/API rute od crawlanja
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+Sitemap: https://yourdomain.com/sitemap.xml
+```
+
+---
+
+## 📊 Google Search Console — Checklist (nakon go-live)
+
+1. **Dodaj domenu** na [search.google.com/search-console](https://search.google.com/search-console)
+2. **Verifikuj vlasništvo** — HTML meta tag ili DNS TXT zapis
+3. **Submit sitemap** — Settings → Sitemaps → `https://yourdomain.com/sitemap.xml`
+4. **URL Inspection** — provjeri da li Google može crawlati homepage
+5. **Core Web Vitals** — provjeri LCP, CLS, FID izvještaj
+
+---
+
+## 🖼️ og-image.jpg — Preporučene Dimenzije
+
+```
+Dimenzije: 1200 × 630 px
+Format: JPG (bolji za WhatsApp/Facebook preview)
+Veličina: < 300KB
+Tekst na slici: ime, titula, domena
+```
+
+Koristi za: WhatsApp preview, Facebook, LinkedIn, Twitter/X, iMessage, Slack
+
+---
+
 Kreirano sa Claude AI — 2026
