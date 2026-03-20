@@ -174,6 +174,57 @@ export default function AboutPage() {
 | `tailwind.config.ts` | Design system (boje, tipografija, animacije) | Konzistentan dizajn |
 | `helpers.ts` | Formatiranje, validacija, utility funkcije | Code quality |
 | `use-premium-hooks.ts` | Responsive, animations, dark mode, clipboard | UX interakcije |
+| `sw.js` | Service Worker — offline cache, PWA | Lighthouse PWA score, offline support |
+| `PWARegistration.tsx` | SW registracija + install prompt | Add to Home Screen |
+
+---
+
+## ⚡ Performance Checklist (vanilla HTML projekti)
+
+Za vanilla HTML/CSS/JS projekte (bez Next.js), ručno implementirati:
+
+```html
+<!-- 1. Preload hero resursa -->
+<link rel="preload" href="videos/hero.mp4" as="video" type="video/mp4">
+
+<!-- 2. fetchpriority na hero elementu -->
+<video fetchpriority="high" ...>
+
+<!-- 3. format-detection — sprječava iOS auto-linkovanje -->
+<meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+
+<!-- 4. WebM fallback za video (VP9, manji od MP4) -->
+<video>
+  <source src="hero.webm" type="video/webm">  <!-- VP9, ~30% manji -->
+  <source src="hero.mp4"  type="video/mp4">   <!-- fallback -->
+</video>
+
+<!-- 5. Service Worker registracija -->
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+  }
+</script>
+```
+
+### ffmpeg — WebM konverzija
+```bash
+# VP9 WebM (optimalno za web, bez audio jer je video muted)
+ffmpeg -i video.mp4 -c:v libvpx-vp9 -crf 33 -b:v 0 -an -deadline good -cpu-used 2 video.webm
+```
+
+### Speakable Schema (voice search)
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".hero-tagline", ".page-description"]
+  },
+  "url": "https://yourdomain.com/"
+}
+```
 
 ---
 
