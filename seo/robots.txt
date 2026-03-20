@@ -1,0 +1,23 @@
+# ============================================================
+# ROBOTS.TXT — Premium Website Template
+# Place in /public/robots.txt or generate via Next.js app/robots.ts
+# ============================================================
+
+User-agent: *
+Allow: /
+
+# Block admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /_next/
+Disallow: /private/
+
+# Block search results and filtered pages (duplicate content)
+Disallow: /search?
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?page=
+
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml

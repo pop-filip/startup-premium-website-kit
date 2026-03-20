@@ -1,0 +1,105 @@
+/* ============================================================
+   ACCESSIBILITY CSS UTILITIES
+   Import into your global CSS or Tailwind layer
+   ============================================================ */
+
+/* --- Focus Visible — Only show focus ring for keyboard navigation --- */
+:focus-visible {
+  outline: 3px solid #2E75B6;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove outline for mouse clicks */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* --- Visually Hidden (utility class) --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Minimum Touch Target (44x44px WCAG) --- */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- High Contrast Mode --- */
+@media (prefers-contrast: high) {
+  :root {
+    --text-color: #000000;
+    --bg-color: #ffffff;
+    --link-color: #0000EE;
+    --border-color: #000000;
+  }
+
+  a { text-decoration: underline !important; }
+  button, input, select, textarea {
+    border: 2px solid #000000 !important;
+  }
+}
+
+/* --- Dark Mode --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #E8ECF0;
+    --text-secondary: #A0AEC0;
+    --bg-primary: #1A1A2E;
+    --bg-secondary: #16213E;
+    --bg-surface: #0F3460;
+    --border-color: #2D3748;
+    --accent: #63B3ED;
+  }
+}
+
+/* --- Selection Color --- */
+::selection {
+  background-color: #2E75B6;
+  color: #ffffff;
+}
+
+/* --- Smooth Scroll (only if user allows motion) --- */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* --- Body Defaults --- */
+body {
+  font-size: 1rem;       /* 16px minimum for readability */
+  line-height: 1.5;      /* WCAG recommended */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Readable Line Length --- */
+.readable {
+  max-width: 75ch;  /* 65-80 characters per line — optimal readability */
+}
