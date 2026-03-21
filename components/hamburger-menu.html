@@ -1,0 +1,193 @@
+<!--
+  ══════════════════════════════════════════════════════
+  HAMBURGER MENU — Aperture/Lens Style + Video Background
+  ══════════════════════════════════════════════════════
+  Component: Mobile navigation menu
+  Style:     Circular lens/aperture button, video BG on open
+  Used in:   matografie.at (mato-website)
+  Created:   2026-03-21
+
+  USAGE:
+  1. Copy CSS into your <style> block
+  2. Copy HTML into your <nav>
+  3. Add <video> element after </nav>
+  4. Copy JS into your script
+
+  REQUIREMENTS:
+  - A compressed background video (see ffmpeg command below)
+  - Mobile breakpoint that shows .hamburger (default ≤700px)
+  ══════════════════════════════════════════════════════
+-->
+
+<!-- ══ VIDEO COMPRESSION ══
+ffmpeg -i input.mp4 \
+  -vf "scale=720:-2" \
+  -c:v libx264 -crf 28 -preset slow \
+  -r 30 -an \
+  -movflags +faststart \
+  output_compressed.mp4
+
+Result: ~10x smaller (e.g. 9.7MB → 981KB)
+-->
+
+
+<!-- ══ CSS ══ -->
+<style>
+/* ── Aperture / Lens Hamburger ── */
+.hamburger{
+  display:none;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:50%;
+  border:none;cursor:pointer;z-index:200;
+  background:transparent;position:relative;padding:0;
+  transition:transform .4s cubic-bezier(0.23,1,0.32,1);
+}
+/* Outer lens ring */
+.hamburger::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:1.5px solid rgba(200,169,126,0.35);
+  transition:border-color .3s ease,box-shadow .3s ease;
+}
+/* Inner lens ring */
+.hamburger::after{
+  content:'';position:absolute;inset:7px;border-radius:50%;
+  border:1px solid rgba(200,169,126,0.15);
+  transition:border-color .3s ease;
+}
+.hamburger:hover::before{
+  border-color:rgba(200,169,126,0.7);
+  box-shadow:0 0 16px rgba(200,169,126,0.2);
+}
+.hamburger:hover::after{border-color:rgba(200,169,126,0.35);}
+.hamburger.open{transform:rotate(90deg);}
+.hamburger.open::before{
+  border-color:rgba(200,169,126,0.8);
+  box-shadow:0 0 20px rgba(200,169,126,0.25);
+}
+/* The 3 lines inside the lens */
+.hamburger .lines{display:flex;flex-direction:column;gap:5px;align-items:center;}
+.hamburger .lines span{
+  display:block;height:1.5px;border-radius:2px;
+  background:rgba(200,169,126,0.75);
+  transition:transform .38s cubic-bezier(0.23,1,0.32,1),
+              opacity .25s ease,width .3s ease,background .25s ease;
+}
+.hamburger .lines span:nth-child(1){width:20px;}
+.hamburger .lines span:nth-child(2){width:14px;align-self:flex-start;margin-left:3px;}
+.hamburger .lines span:nth-child(3){width:20px;}
+.hamburger:hover .lines span{background:rgba(200,169,126,1);}
+/* open → X */
+.hamburger.open .lines span:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:20px;background:#c8a97e;}
+.hamburger.open .lines span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open .lines span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:20px;background:#c8a97e;}
+
+/* ── Mobile Menu ── */
+.mobile-menu{
+  display:none;
+  position:fixed;inset:0;top:64px; /* adjust to your nav height */
+  background:rgba(10,10,10,0.75);  /* semi-transparent so video shows through */
+  z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:0;
+  list-style:none;padding:0;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu li{width:100%;text-align:center;}
+.mobile-menu li+li{border-top:1px solid rgba(200,169,126,0.08);width:60%;margin:0 auto;}
+.mobile-menu li a{
+  display:block;padding:18px 0;
+  color:rgba(255,255,255,0.45);
+  font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  cursor:pointer;
+  transition:color .2s ease,letter-spacing .3s ease;
+  line-height:1;
+}
+.mobile-menu li a:hover,
+.mobile-menu li.active a{color:#e2b96f;letter-spacing:.2em;}
+/* stagger fade-in per item */
+.mobile-menu li{opacity:0;transform:translateY(14px);}
+.mobile-menu.open li{animation:mItemIn .45s cubic-bezier(0.23,1,0.32,1) forwards;}
+.mobile-menu.open li:nth-child(1){animation-delay:.12s;}
+.mobile-menu.open li:nth-child(2){animation-delay:.19s;}
+.mobile-menu.open li:nth-child(3){animation-delay:.26s;}
+.mobile-menu.open li:nth-child(4){animation-delay:.33s;}
+.mobile-menu.open li:nth-child(5){animation-delay:.40s;}
+.mobile-menu.open li:nth-child(6){animation-delay:.47s;}
+@keyframes mItemIn{to{opacity:1;transform:translateY(0);}}
+
+/* ── Menu Background Video ── */
+.menu-video{
+  position:fixed;inset:0;top:64px; /* match nav height */
+  z-index:98;
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;pointer-events:none;
+  transition:opacity .6s ease;
+}
+.menu-video.visible{opacity:0.45;}
+
+/* ── Show on mobile only ── */
+@media(max-width:700px){
+  .hamburger{display:flex!important;}
+}
+</style>
+
+
+<!-- ══ HTML ══ -->
+
+<!-- Inside your <nav>: -->
+<button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+  <div class="lines">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</button>
+
+<!-- Mobile menu (inside or after nav): -->
+<ul class="mobile-menu" id="mobileMenu">
+  <li class="active"><a href="#home">Home</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#work">Work</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+
+<!-- Background video (after </nav>): -->
+<video class="menu-video" id="menuVideo" muted loop playsinline>
+  <source src="contact_compressed.mp4" type="video/mp4">
+</video>
+
+
+<!-- ══ JS ══ -->
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuVideo = document.getElementById('menuVideo');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (isOpen) {
+    menuVideo.currentTime = 0;
+    menuVideo.play().catch(() => {});
+    menuVideo.classList.add('visible');
+  } else {
+    menuVideo.classList.remove('visible');
+    setTimeout(() => menuVideo.pause(), 600);
+  }
+});
+
+// Close menu when item is clicked
+mobileMenu.querySelectorAll('li').forEach(li => {
+  li.addEventListener('click', () => {
+    mobileMenu.querySelectorAll('li').forEach(l => l.classList.remove('active'));
+    li.classList.add('active');
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    menuVideo.classList.remove('visible');
+    setTimeout(() => menuVideo.pause(), 600);
+  });
+});
+</script>
