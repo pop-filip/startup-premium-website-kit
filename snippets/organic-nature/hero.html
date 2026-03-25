@@ -1,0 +1,42 @@
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-tag">{{TAGLINE}}</span>
+      <h1 class="hero-title">{{TITLE}}</h1>
+      <p class="hero-subtitle">{{SUBTITLE}}</p>
+      <div class="hero-actions">
+        <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}}</a>
+        <a href="tel:{{PHONE}}" class="btn-text">{{PHONE}}</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <picture>
+        <source srcset="/images/hero.webp" type="image/webp">
+        <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}">
+      </picture>
+      <div class="hero-leaf hero-leaf-1">🌿</div>
+      <div class="hero-leaf hero-leaf-2">🍃</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero { background: var(--bg); padding: 100px 0 60px; overflow: hidden; }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-tag { display: inline-block; background: rgba(74,124,89,0.12); color: var(--primary); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+.hero-title { font-size: clamp(36px, 5vw, 62px); font-weight: 600; line-height: 1.15; margin: 0 0 20px; font-style: italic; color: var(--text); }
+.hero-subtitle { font-size: 16px; line-height: 1.75; color: rgba(44,44,44,0.65); margin: 0 0 36px; max-width: 420px; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; background: var(--primary); color: #fff; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+.btn-primary:hover { background: #3a6548; transform: translateY(-2px); }
+.btn-text { font-size: 14px; color: var(--primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(74,124,89,0.3); padding-bottom: 2px; }
+.hero-img-wrap { position: relative; }
+.hero-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 60% 40% 50% 50% / 40% 40% 60% 60%; display: block; }
+.hero-leaf { position: absolute; font-size: 48px; pointer-events: none; opacity: 0.4; }
+.hero-leaf-1 { top: -20px; right: -10px; transform: rotate(20deg); }
+.hero-leaf-2 { bottom: 20px; left: -20px; transform: rotate(-15deg); font-size: 36px; }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-img-wrap { display: none; }
+}
+</style>

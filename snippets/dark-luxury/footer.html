@@ -1,0 +1,41 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">{{BUSINESS_NAME}}</div>
+      <div class="footer-line"></div>
+      <p class="footer-tagline">{{TAGLINE}}</p>
+    </div>
+    <div class="footer-info">
+      <p class="footer-label">Adresse</p>
+      <p>{{ADDRESS}}</p>
+      <p class="footer-label" style="margin-top:16px">Kontakt</p>
+      <a href="tel:{{PHONE}}">{{PHONE}}</a>
+      <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+    </div>
+    <div class="footer-hours">
+      <p class="footer-label">Öffnungszeiten</p>
+      <p>{{HOURS}}</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {{YEAR}} {{BUSINESS_NAME}}</span>
+    <a href="/datenschutz">Datenschutz</a>
+    <a href="/impressum">Impressum</a>
+  </div>
+</footer>
+<style>
+.footer { background: #050505; padding: 80px 0 0; border-top: 1px solid rgba(201,169,110,0.15); }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; border-bottom: 1px solid rgba(201,169,110,0.1); }
+.footer-logo { font-size: 22px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; }
+.footer-line { width: 40px; height: 1px; background: var(--primary); margin-bottom: 16px; opacity: 0.5; }
+.footer-tagline { font-size: 13px; color: rgba(245,240,232,0.4); }
+.footer-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--primary); margin: 0 0 10px; opacity: 0.6; }
+.footer-info p, .footer-info a { display: block; font-size: 13px; color: rgba(245,240,232,0.5); text-decoration: none; margin-bottom: 4px; }
+.footer-info a:hover { color: var(--primary); }
+.footer-hours p { font-size: 13px; color: rgba(245,240,232,0.5); white-space: pre-line; line-height: 1.8; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 24px; font-size: 11px; letter-spacing: 1px; }
+.footer-bottom span { color: rgba(245,240,232,0.2); }
+.footer-bottom a { color: rgba(245,240,232,0.3); text-decoration: none; }
+.footer-bottom a:hover { color: var(--primary); }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; gap: 32px; } }
+</style>

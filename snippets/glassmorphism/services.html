@@ -1,0 +1,27 @@
+<section class="services">
+  <div class="services-inner">
+    <p class="section-label">{{TAGLINE}}</p>
+    <h2 class="section-title">{{SECTION_TITLE}}</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-icon">{{ICON}}</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_DESC}}</p>
+        <span class="card-price">{{SERVICE_PRICE}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.services { padding: 100px 0; }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin: 0 0 12px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin: 0 0 48px; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.service-card { backdrop-filter: blur(20px); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px; transition: background 0.3s; }
+.service-card:hover { background: rgba(255,255,255,0.1); }
+.card-icon { font-size: 28px; margin-bottom: 16px; }
+.service-card h3 { font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+.service-card p { font-size: 14px; line-height: 1.7; color: rgba(248,250,252,0.6); margin: 0 0 16px; }
+.card-price { font-size: 13px; color: var(--primary); font-weight: 600; }
+</style>

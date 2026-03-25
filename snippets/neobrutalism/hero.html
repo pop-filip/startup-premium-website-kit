@@ -1,0 +1,43 @@
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-sticker">{{TAGLINE}}</div>
+      <h1 class="hero-title">{{TITLE}}</h1>
+      <p class="hero-subtitle">{{SUBTITLE}}</p>
+      <div class="hero-actions">
+        <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}} →</a>
+        <a href="tel:{{PHONE}}" class="btn-outline">{{PHONE}}</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-box">
+        <picture>
+          <source srcset="/images/hero.webp" type="image/webp">
+          <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}">
+        </picture>
+        <div class="img-badge">{{STAT_NUMBER}}<br><small>{{STAT_LABEL}}</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero { background: var(--bg); padding: 80px 0 60px; }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-sticker { display: inline-block; background: var(--primary); color: var(--text); font-size: 12px; font-weight: 800; letter-spacing: 1px; padding: 8px 16px; border: 2px solid var(--text); box-shadow: 3px 3px 0 var(--text); margin-bottom: 24px; transform: rotate(-1deg); }
+.hero-title { font-size: clamp(38px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; margin: 0 0 20px; color: var(--text); }
+.hero-subtitle { font-size: 16px; line-height: 1.65; color: var(--text); opacity: 0.65; margin: 0 0 32px; max-width: 400px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; background: var(--primary); color: var(--text); font-weight: 800; font-size: 15px; padding: 14px 28px; border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--text); text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+.btn-primary:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--text); }
+.btn-outline { display: inline-flex; align-items: center; background: transparent; color: var(--text); font-weight: 700; font-size: 15px; padding: 14px 28px; border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--text); text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+.btn-outline:hover { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--text); }
+.hero-img-box { position: relative; }
+.hero-img-box img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 2px solid var(--text); box-shadow: 6px 6px 0 var(--text); display: block; }
+.img-badge { position: absolute; bottom: -16px; right: -16px; background: #FFDE00; border: 2px solid var(--text); box-shadow: 3px 3px 0 var(--text); padding: 12px 16px; font-weight: 800; font-size: 20px; line-height: 1.2; text-align: center; }
+.img-badge small { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+}
+</style>

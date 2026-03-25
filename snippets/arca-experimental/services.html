@@ -1,0 +1,29 @@
+<section class="services">
+  <div class="services-inner">
+    <div class="section-hd">
+      <span class="hd-sys">[MODULE.{{TAGLINE}}]</span>
+      <h2 class="section-title">{{SECTION_TITLE}}</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-id">// {{SERVICE_ID}}</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_DESC}}</p>
+        <div class="card-price">{{SERVICE_PRICE}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.services { background: var(--surface); padding: 80px 0; border-top: 1px solid rgba(0,255,136,0.1); }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.hd-sys { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--primary); letter-spacing: 2px; opacity: 0.7; display: block; margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 4vw, 52px); font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0 0 48px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: rgba(0,255,136,0.08); }
+.service-card { background: var(--bg); padding: 28px; transition: background 0.2s; }
+.service-card:hover { background: rgba(0,255,136,0.04); }
+.card-id { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--primary); letter-spacing: 1px; opacity: 0.5; margin-bottom: 16px; }
+.service-card h3 { font-size: 17px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; }
+.service-card p { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.8; color: rgba(240,240,240,0.5); margin: 0 0 16px; }
+.card-price { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--primary); }
+</style>

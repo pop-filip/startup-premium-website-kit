@@ -1,0 +1,32 @@
+<section class="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <h2 class="section-title">{{SECTION_TITLE}}</h2>
+      <p class="section-sub">{{SECTION_SUBTITLE}}</p>
+    </div>
+    <div class="services-grid">
+      <!-- Repeat this block per service -->
+      <div class="service-card">
+        <div class="card-num">01</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_DESC}}</p>
+        <div class="card-price">{{SERVICE_PRICE}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.services { background: var(--surface); padding: 80px 0; border-top: 2px solid var(--text); border-bottom: 2px solid var(--text); }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-header { margin-bottom: 48px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 900; text-transform: uppercase; margin: 0 0 12px; }
+.section-sub { font-size: 15px; color: rgba(10,10,10,0.6); max-width: 480px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border: 2px solid var(--text); }
+.service-card { padding: 32px; border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); }
+.service-card:nth-child(3n) { border-right: none; }
+.card-num { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--primary); margin-bottom: 16px; }
+.service-card h3 { font-size: 20px; font-weight: 900; text-transform: uppercase; margin: 0 0 10px; }
+.service-card p { font-size: 14px; line-height: 1.6; opacity: 0.65; margin: 0 0 16px; }
+.card-price { display: inline-block; background: var(--primary); color: var(--text); font-weight: 900; font-size: 14px; padding: 4px 12px; border: 2px solid var(--text); box-shadow: 2px 2px 0 var(--text); }
+</style>

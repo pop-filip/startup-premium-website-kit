@@ -1,0 +1,45 @@
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">{{TAGLINE}}</div>
+      <h1 class="hero-title">{{TITLE}}</h1>
+      <p class="hero-subtitle">{{SUBTITLE}}</p>
+      <div class="hero-actions">
+        <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}}</a>
+        <a href="tel:{{PHONE}}" class="btn-secondary">{{PHONE}}</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-stat-box">
+        <span class="stat-num">{{STAT_NUMBER}}</span>
+        <span class="stat-label">{{STAT_LABEL}}</span>
+      </div>
+      <picture>
+        <source srcset="/images/hero.webp" type="image/webp">
+        <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}" class="hero-img">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero { background: var(--bg); padding: 80px 0 60px; border-bottom: 2px solid var(--text); }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.hero-tag { display: inline-block; background: var(--primary); color: var(--text); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 12px; border: 2px solid var(--text); margin-bottom: 24px; }
+.hero-title { font-size: clamp(42px, 6vw, 80px); font-weight: 900; line-height: 1.0; margin: 0 0 20px; text-transform: uppercase; }
+.hero-subtitle { font-size: 16px; line-height: 1.6; color: var(--text); opacity: 0.7; margin: 0 0 32px; max-width: 420px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; background: var(--primary); color: var(--text); font-weight: 700; font-size: 14px; padding: 14px 28px; border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--text); text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+.btn-primary:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--text); }
+.btn-secondary { display: inline-flex; align-items: center; background: transparent; color: var(--text); font-weight: 700; font-size: 14px; padding: 14px 28px; border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--text); text-decoration: none; transition: transform 0.1s, box-shadow 0.1s; }
+.btn-secondary:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--text); }
+.hero-side { position: relative; }
+.hero-stat-box { position: absolute; top: -20px; right: -20px; background: var(--primary); border: 2px solid var(--text); box-shadow: 4px 4px 0 var(--text); padding: 16px 20px; z-index: 2; text-align: center; }
+.stat-num { display: block; font-size: 36px; font-weight: 900; line-height: 1; }
+.stat-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+.hero-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 2px solid var(--text); display: block; }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-side { display: none; }
+}
+</style>

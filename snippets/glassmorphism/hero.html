@@ -1,0 +1,46 @@
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-card">
+      <div class="hero-badge">{{TAGLINE}}</div>
+      <h1 class="hero-title">{{TITLE}}</h1>
+      <p class="hero-subtitle">{{SUBTITLE}}</p>
+      <div class="hero-actions">
+        <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}}</a>
+        <a href="tel:{{PHONE}}" class="btn-ghost">{{PHONE}}</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glass-frame">
+        <picture>
+          <source srcset="/images/hero.webp" type="image/webp">
+          <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.hero-blob { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,0.4), transparent 70%); top: -100px; left: -100px; pointer-events: none; }
+.hero-blob-2 { background: radial-gradient(circle, rgba(244,114,182,0.3), transparent 70%); top: auto; left: auto; bottom: -100px; right: -100px; }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 100px 24px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+.hero-card { backdrop-filter: blur(20px); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 48px; }
+.hero-badge { display: inline-block; background: rgba(167,139,250,0.2); border: 1px solid rgba(167,139,250,0.4); color: var(--primary); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+.hero-title { font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.1; margin: 0 0 20px; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-subtitle { font-size: 16px; line-height: 1.7; color: rgba(248,250,252,0.7); margin: 0 0 36px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; background: var(--primary); color: #fff; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: 12px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-ghost { display: inline-flex; align-items: center; background: rgba(255,255,255,0.08); color: rgba(248,250,252,0.9); font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); text-decoration: none; backdrop-filter: blur(10px); transition: background 0.2s; }
+.btn-ghost:hover { background: rgba(255,255,255,0.14); }
+.glass-frame { backdrop-filter: blur(10px); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 12px; overflow: hidden; }
+.glass-frame img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; display: block; }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero-card { padding: 32px 24px; }
+}
+</style>

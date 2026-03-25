@@ -1,0 +1,46 @@
+<section class="hero">
+  <div class="hero-scan"></div>
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <span class="meta-line">[SYS.{{TAGLINE}}]</span>
+      <span class="meta-line">STATUS: ONLINE</span>
+    </div>
+    <h1 class="hero-title" data-glitch="{{TITLE}}">{{TITLE}}</h1>
+    <p class="hero-subtitle">{{SUBTITLE}}</p>
+    <div class="hero-actions">
+      <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}} ▶</a>
+      <a href="tel:{{PHONE}}" class="btn-mono">{{PHONE}}</a>
+    </div>
+  </div>
+  <div class="hero-img-col">
+    <picture>
+      <source srcset="/images/hero.webp" type="image/webp">
+      <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}" class="hero-img">
+    </picture>
+    <div class="img-overlay"></div>
+  </div>
+</section>
+
+<style>
+.hero { background: var(--bg); min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero-scan { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.02) 2px, rgba(0,255,136,0.02) 4px); pointer-events: none; z-index: 3; }
+.hero-inner { display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 60px; position: relative; z-index: 2; }
+.hero-meta { display: flex; flex-direction: column; gap: 4px; margin-bottom: 40px; }
+.meta-line { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--primary); letter-spacing: 2px; opacity: 0.7; }
+.hero-title { font-size: clamp(42px, 6vw, 84px); font-weight: 900; line-height: 0.95; text-transform: uppercase; letter-spacing: -2px; margin: 0 0 24px; color: var(--text); }
+.hero-title::before { content: attr(data-glitch); position: absolute; top: 0; left: 2px; color: var(--primary); clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%); opacity: 0; animation: glitch-clip 4s infinite; }
+@keyframes glitch-clip { 0%,90%,100% { opacity: 0; } 92% { opacity: 0.8; left: -2px; } 94% { opacity: 0; left: 2px; } 96% { opacity: 0.8; } }
+.hero-subtitle { font-family: 'Space Mono', monospace; font-size: 13px; line-height: 1.8; color: rgba(240,240,240,0.55); margin: 0 0 40px; max-width: 420px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: #0A0A0A; font-weight: 900; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 14px 28px; border: none; text-decoration: none; transition: box-shadow 0.2s; }
+.btn-primary:hover { box-shadow: 0 0 20px rgba(0,255,136,0.5); }
+.btn-mono { display: inline-flex; align-items: center; font-family: 'Space Mono', monospace; font-size: 12px; color: rgba(240,240,240,0.6); text-decoration: none; border-bottom: 1px solid rgba(0,255,136,0.3); padding-bottom: 2px; letter-spacing: 1px; }
+.hero-img-col { position: relative; overflow: hidden; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.1) saturate(0.3); mix-blend-mode: luminosity; }
+.img-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, #0A0A0A 0%, transparent 30%, rgba(0,255,136,0.05)); }
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-img-col { display: none; }
+  .hero-inner { padding: 100px 24px 60px; }
+}
+</style>

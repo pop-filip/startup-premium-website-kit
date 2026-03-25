@@ -1,0 +1,27 @@
+<section class="services">
+  <div class="services-inner">
+    <h2 class="section-title">{{SECTION_TITLE}}</h2>
+    <p class="section-sub">{{SECTION_SUBTITLE}}</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-accent"></div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_DESC}}</p>
+        <div class="card-price">{{SERVICE_PRICE}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.services { background: var(--bg); padding: 80px 0; }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-title { font-size: clamp(28px, 4vw, 52px); font-weight: 800; margin: 0 0 10px; }
+.section-sub { color: rgba(26,26,26,0.6); margin: 0 0 48px; font-size: 15px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.service-card { background: #fff; border: 2px solid var(--text); box-shadow: 5px 5px 0 var(--text); padding: 28px; position: relative; overflow: hidden; transition: transform 0.1s, box-shadow 0.1s; }
+.service-card:hover { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--text); }
+.card-accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--primary); }
+.service-card h3 { font-size: 18px; font-weight: 800; margin: 0 0 10px; }
+.service-card p { font-size: 14px; line-height: 1.65; color: rgba(26,26,26,0.65); margin: 0 0 16px; }
+.card-price { display: inline-block; background: var(--primary); color: var(--text); font-weight: 800; font-size: 13px; padding: 4px 12px; border: 2px solid var(--text); }
+</style>

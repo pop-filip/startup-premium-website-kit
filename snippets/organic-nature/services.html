@@ -1,0 +1,29 @@
+<section class="services">
+  <div class="services-inner">
+    <span class="section-tag">{{TAGLINE}}</span>
+    <h2 class="section-title">{{SECTION_TITLE}}</h2>
+    <p class="section-sub">{{SECTION_SUBTITLE}}</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-leaf">🌿</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_DESC}}</p>
+        <span class="card-price">{{SERVICE_PRICE}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.services { background: var(--bg); padding: 80px 0; }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-tag { display: inline-block; background: rgba(74,124,89,0.1); color: var(--primary); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+.section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 600; font-style: italic; margin: 0 0 12px; }
+.section-sub { color: rgba(44,44,44,0.6); margin: 0 0 48px; font-size: 15px; max-width: 500px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.service-card { background: #fff; border-radius: 20px; padding: 28px; border: 1px solid rgba(74,124,89,0.12); transition: box-shadow 0.2s, transform 0.2s; }
+.service-card:hover { box-shadow: 0 8px 32px rgba(74,124,89,0.12); transform: translateY(-4px); }
+.card-leaf { font-size: 24px; margin-bottom: 14px; }
+.service-card h3 { font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+.service-card p { font-size: 14px; line-height: 1.7; color: rgba(44,44,44,0.6); margin: 0 0 14px; }
+.card-price { font-size: 13px; color: var(--primary); font-weight: 600; }
+</style>

@@ -1,0 +1,20 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="footer-logo">{{BUSINESS_NAME}}</div><p>{{TAGLINE}}</p></div>
+    <div class="footer-info">
+      <p>{{ADDRESS}}</p><a href="tel:{{PHONE}}">{{PHONE}}</a><a href="mailto:{{EMAIL}}">{{EMAIL}}</a><p>{{HOURS}}</p>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© {{YEAR}} {{BUSINESS_NAME}}</span><a href="/datenschutz">Datenschutz</a><a href="/impressum">Impressum</a></div>
+</footer>
+<style>
+.footer { background: #fff; padding: 60px 0 0; border-top: 1px solid #E0E0E0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 2fr 1fr; gap: 48px; border-bottom: 1px solid #E0E0E0; }
+.footer-logo { font-size: 18px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+.footer-brand p { font-size: 13px; color: #999; }
+.footer-info p, .footer-info a { display: block; font-size: 13px; color: #666; text-decoration: none; margin-bottom: 5px; }
+.footer-info a:hover { color: #000; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 24px; font-size: 12px; color: #C0C0C0; }
+.footer-bottom a { color: #C0C0C0; text-decoration: none; }
+.footer-bottom a:hover { color: #000; }
+</style>

@@ -1,0 +1,48 @@
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        {{TAGLINE}}
+      </div>
+      <h1 class="hero-title">{{TITLE}}</h1>
+      <p class="hero-subtitle">{{SUBTITLE}}</p>
+      <div class="hero-actions">
+        <a href="{{CTA_URL}}" class="btn-primary">{{CTA_TEXT}}</a>
+        <a href="tel:{{PHONE}}" class="btn-secondary">{{PHONE}}</a>
+      </div>
+      <div class="hero-trust">
+        <span>✓ {{TRUST_1}}</span>
+        <span>✓ {{TRUST_2}}</span>
+        <span>✓ {{TRUST_3}}</span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <picture>
+        <source srcset="/images/hero.webp" type="image/webp">
+        <img src="/images/hero.jpg" alt="{{BUSINESS_NAME}}">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero { background: var(--surface); padding: 100px 0 60px; }
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(37,99,235,0.08); color: var(--primary); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 6px; margin-bottom: 24px; }
+.badge-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; }
+.hero-title { font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin: 0 0 20px; }
+.hero-subtitle { font-size: 16px; line-height: 1.7; color: #475569; margin: 0 0 32px; max-width: 440px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.btn-primary { display: inline-flex; align-items: center; background: var(--primary); color: #fff; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+.btn-secondary { display: inline-flex; align-items: center; background: #fff; color: #0F172A; font-weight: 600; font-size: 14px; padding: 14px 28px; border-radius: 8px; border: 1px solid #E2E8F0; text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color 0.2s; }
+.btn-secondary:hover { border-color: #CBD5E1; }
+.hero-trust { display: flex; gap: 20px; flex-wrap: wrap; }
+.hero-trust span { font-size: 13px; color: #64748B; }
+.hero-img img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.12); display: block; }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-img { display: none; }
+}
+</style>

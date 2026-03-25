@@ -1,0 +1,37 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">{{BUSINESS_NAME}}</div>
+      <p class="footer-tagline">{{TAGLINE}}</p>
+    </div>
+    <div class="footer-contact">
+      <p>{{ADDRESS}}</p>
+      <a href="tel:{{PHONE}}">{{PHONE}}</a>
+      <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+    </div>
+    <div class="footer-hours">
+      <strong>Öffnungszeiten</strong>
+      <p>{{HOURS}}</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {{YEAR}} {{BUSINESS_NAME}}</span>
+    <a href="/datenschutz">Datenschutz</a>
+    <a href="/impressum">Impressum</a>
+  </div>
+</footer>
+<style>
+.footer { background: var(--text); color: var(--bg); padding: 60px 0 0; border-top: 2px solid var(--text); }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; border-bottom: 2px solid rgba(255,255,255,0.15); }
+.footer-logo { font-size: 24px; font-weight: 900; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; opacity: 0.5; }
+.footer-contact a, .footer-contact p { display: block; font-size: 14px; color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: 6px; }
+.footer-contact a:hover { color: var(--primary); }
+.footer-hours strong { display: block; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+.footer-hours p { font-size: 13px; opacity: 0.6; white-space: pre-line; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 24px; font-size: 12px; }
+.footer-bottom span { opacity: 0.4; }
+.footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+.footer-bottom a:hover { color: var(--primary); }
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr; gap: 28px; } }
+</style>
